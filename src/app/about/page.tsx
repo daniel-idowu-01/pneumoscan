@@ -1,10 +1,10 @@
 import AboutStats from '@/components/AboutStats'
-import CoreValuesSection from '@/components/CoreValueSection'
+import CoreValuesSection from '@/components/core-value/CoreValueSection'
 import Footer from '@/components/Footer'
 import NavBar from '@/components/headers/NavBar'
 import HeroSection from '@/components/HeroSection'
 import TeamSection from '@/components/TeamSection'
-import TestimonialsSection from '@/components/TestimonialsSection'
+import TestimonialsSection from '@/components/testimonials/TestimonialsSection'
 import { teamMembers, testimonials } from '@/utils/data'
 
 const About = () => {

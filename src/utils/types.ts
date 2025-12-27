@@ -47,3 +47,10 @@ export type TestimonialsSectionProps = {
   title?: string
   testimonials: Testimonial[]
 }
+
+export type ContactInputProps = {
+  label: string
+  placeholder: string
+  type?: string
+  optional?: boolean
+}
