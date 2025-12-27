@@ -1,5 +1,5 @@
 
-const ImageUploadHeader = () => {
+const ImageUploadNavBar = () => {
     return (
         <header className="sticky top-0 z-50 w-full border-b border-border-light dark:border-[#233348] bg-surface-light/95 dark:bg-[#111822]/95 backdrop-blur supports-[backdrop-filter]:bg-surface-light/60 dark:supports-[backdrop-filter]:bg-[#111822]/60 px-4 sm:px-10 py-3">
 <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4">
@@ -7,7 +7,7 @@ const ImageUploadHeader = () => {
 <div className="flex items-center justify-center size-8 rounded bg-primary/10 dark:bg-primary/20 text-primary">
 <span className="material-symbols-outlined text-2xl">radiology</span>
 </div>
-<h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">MedScan AI</h2>
+<h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">PneumoScan</h2>
 </div>
 <nav className="hidden md:flex flex-1 justify-end items-center gap-8">
 <div className="flex items-center gap-6">
@@ -33,4 +33,4 @@ const ImageUploadHeader = () => {
     )
 }
 
-export default ImageUploadHeader
+export default ImageUploadNavBar

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AuthHeader from "@/components/headers/AuthHeader";
+import AuthHeader from "@/components/headers/AuthNavBar";
 import AuthSideComp from "@/components/AuthSideComp";
 
 const SignUp = () => {

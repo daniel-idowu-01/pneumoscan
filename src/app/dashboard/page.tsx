@@ -1,4 +1,4 @@
-import DashboardSideBar from "@/components/DashboardSideBar"
+import DashboardSideBar from "@/components/sidebar/DashboardSideBar"
 
 const Dashboard = () => {
     return (

@@ -1,4 +1,4 @@
-import ImageUploadHeader from "@/components/headers/ImageUploadHeader"
+import ImageUploadHeader from "@/components/headers/ImageUploadNavBar"
 
 const Results = () => {
     return (
