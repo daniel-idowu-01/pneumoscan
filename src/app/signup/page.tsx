@@ -152,7 +152,7 @@ const SignUp = () => {
           </section>
         </main>
         <footer className="py-6 text-center text-xs text-slate-500 dark:text-slate-600">
-          <p>© 2023 MedAI Inc. All rights reserved.</p>
+          <p>© 2023 PneumoScan Inc. All rights reserved.</p>
         </footer>
       </div>
     </>

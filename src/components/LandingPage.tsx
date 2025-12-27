@@ -31,9 +31,12 @@ const LandingPage = () => {
                     Create Account
                   </button>
                   </Link>
+                  <Link href='/about'>
                   <button className="flex h-12 min-w-35 items-center justify-center rounded-lg border border-slate-200 bg-white px-6 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors cursor-pointer">
                     Learn More
                   </button>
+
+                  </Link>
                 </div>
                 <div className="flex items-center gap-6 pt-4 text-sm text-slate-500 dark:text-slate-500">
                   <div className="flex items-center gap-2">
@@ -91,7 +94,7 @@ const LandingPage = () => {
           <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
             <div className="flex flex-col gap-4 mb-12 text-center md:text-left">
               <h2 className="font-display text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-                Why Leading Hospitals Choose MedAI
+                Why Leading Hospitals Choose PneumoScan
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
                 Built for speed, accuracy, and rigorous security standards in
@@ -162,7 +165,7 @@ const LandingPage = () => {
                 Ready to transform your diagnostic workflow?
               </h2>
               <p className="max-w-xl text-lg text-slate-300">
-                Join thousands of radiologists using MedAI Analyze to enhance
+                Join thousands of radiologists using PneumoScan Analyze to enhance
                 precision and speed.
               </p>
               <Link href='/signup'>

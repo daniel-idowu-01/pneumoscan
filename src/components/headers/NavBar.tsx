@@ -22,15 +22,15 @@ const NavBar = () => {
             >
               About
             </Link>
-            <Link
+            {/* <Link
               className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
               href="/technology"
             >
               Technology
-            </Link>
+            </Link> */}
             <Link
               className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
-              href="/contact"
+              href="/contact-us"
             >
               Contact
             </Link>

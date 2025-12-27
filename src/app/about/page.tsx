@@ -162,7 +162,7 @@ const About = () => {
                                 "MedScan AI has become an indispensable second pair of eyes in our clinic. The speed at which we can now triage critical cases has improved our patient outcomes significantly."
                             </p>
 <div className="flex items-center gap-4">
-<div className="size-12 rounded-full bg-cover bg-center" data-alt="Portrait of Dr. A. Smith" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuB62mkZqDE4fMmntbHYiZHDpQ4ClPvJVDr5ra2WL31ESsKRD5zKTICvIbQ_FngmKgdOIhMygSWobytYlT53ulx8_sNMZRMKunKXAZoKL-54gx013VzbjtzqyRneuMd84-RaOtB6eYIb-WAiZVIPorAdMgNFBWgnebBcQvMcRb3yCb8YtcCNYQVhDy_0BoLqCPDxqaV8OyiEMJcZEdcp5v0_4Fbi8kS7mscp4KUGWlp3RxU8_eKMIyEGWT8TFgoFiFsnwWUYgNFWI4Uv');"}}></div>
+<div className="size-12 rounded-full bg-cover bg-center" data-alt="Portrait of Dr. A. Smith" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuB62mkZqDE4fMmntbHYiZHDpQ4ClPvJVDr5ra2WL31ESsKRD5zKTICvIbQ_FngmKgdOIhMygSWobytYlT53ulx8_sNMZRMKunKXAZoKL-54gx013VzbjtzqyRneuMd84-RaOtB6eYIb-WAiZVIPorAdMgNFBWgnebBcQvMcRb3yCb8YtcCNYQVhDy_0BoLqCPDxqaV8OyiEMJcZEdcp5v0_4Fbi8kS7mscp4KUGWlp3RxU8_eKMIyEGWT8TFgoFiFsnwWUYgNFWI4Uv')"}}></div>
 <div>
 <p className="text-white font-bold">Dr. Anthony Smith</p>
 <p className="text-slate-500 text-sm">Head of Radiology, Metro General</p>
