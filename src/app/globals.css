@@ -43,3 +43,15 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #3e526a; 
 }
+
+ .custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #192433; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
+}
