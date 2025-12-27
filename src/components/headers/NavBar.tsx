@@ -16,24 +16,24 @@ const NavBar = () => {
             </h2>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a
+            <Link
               className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
-              href="#"
+              href="/about"
             >
               About
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
-              href="#"
+              href="/technology"
             >
               Technology
-            </a>
-            <a
+            </Link>
+            <Link
               className="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
-              href="#"
+              href="/contact"
             >
               Contact
-            </a>
+            </Link>
           </div>
           <div className="flex items-center gap-4">
             <button className="hidden sm:flex h-9 items-center justify-center rounded-lg px-4 text-sm font-semibold text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800 transition-colors cursor-pointer">
