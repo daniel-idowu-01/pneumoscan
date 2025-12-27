@@ -78,7 +78,7 @@ const About = () => {
 </div>
 <div className="flex flex-col gap-2">
 <h2 className="text-white text-lg font-bold leading-tight">Unmatched Accuracy</h2>
-<p className="text-[#92a9c9] text-sm font-normal leading-relaxed">Our models are trained on over 1 million verified datasets to ensure precision that rivals top specialists.</p>
+<p className="text-text-muted text-sm font-normal leading-relaxed">Our models are trained on over 1 million verified datasets to ensure precision that rivals top specialists.</p>
 </div>
 </div>
 <div className="flex flex-1 gap-4 rounded-xl border border-border-light bg-surface-dark p-6 flex-col hover:border-primary/50 transition-colors group">
@@ -87,7 +87,7 @@ const About = () => {
 </div>
 <div className="flex flex-col gap-2">
 <h2 className="text-white text-lg font-bold leading-tight">Instant Analysis</h2>
-<p className="text-[#92a9c9] text-sm font-normal leading-relaxed">Get results in seconds, allowing for faster triage and decision making in critical care environments.</p>
+<p className="text-text-muted text-sm font-normal leading-relaxed">Get results in seconds, allowing for faster triage and decision making in critical care environments.</p>
 </div>
 </div>
 <div className="flex flex-1 gap-4 rounded-xl border border-border-light bg-surface-dark p-6 flex-col hover:border-primary/50 transition-colors group">
@@ -96,7 +96,7 @@ const About = () => {
 </div>
 <div className="flex flex-col gap-2">
 <h2 className="text-white text-lg font-bold leading-tight">Patient Privacy</h2>
-<p className="text-[#92a9c9] text-sm font-normal leading-relaxed">Built with HIPAA compliance at the core to ensure patient data is never compromised or mishandled.</p>
+<p className="text-text-muted text-sm font-normal leading-relaxed">Built with HIPAA compliance at the core to ensure patient data is never compromised or mishandled.</p>
 </div>
 </div>
 </div>

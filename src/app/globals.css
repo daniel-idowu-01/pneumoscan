@@ -3,6 +3,7 @@
 /* Design tokens */
 @theme {
   --color-primary: #136dec;
+
   --color-background-light: #f6f7f8;
   --color-background-dark: #101822;
 
@@ -12,6 +13,12 @@
   --color-input-light: #ffffff;
   --color-input-bg: #0f172a;
   --color-input-border: #233348;
+
+  --color-text-muted: #92a9c9;
+
+  --color-border-light: #2a3446;
+  --color-border-dark: #1e293b;
+  --color-bg-border-dark: #1e293b;
 
   --font-display: "Inter", system-ui, sans-serif;
   --font-body: "Noto Sans", system-ui, sans-serif;
