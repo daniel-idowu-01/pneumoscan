@@ -28,3 +28,18 @@
     font-family: var(--font-body);
   }
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #101822; 
+}
+::-webkit-scrollbar-thumb {
+    background: #2a3b50; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3e526a; 
+}
