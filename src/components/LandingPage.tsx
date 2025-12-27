@@ -1,5 +1,6 @@
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import Link from "next/link";
 
 const LandingPage = () => {
   return (
@@ -27,7 +28,7 @@ const LandingPage = () => {
                 </p>
                 <div className="flex flex-wrap gap-4 pt-2">
                   <button className="flex h-12 min-w-35 items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-blue-600 hover:scale-[1.02] transition-all">
-                    Create Account
+                    <Link href="/signup">Create Account</Link>
                   </button>
                   <button className="flex h-12 min-w-35 items-center justify-center rounded-lg border border-slate-200 bg-white px-6 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors">
                     Learn More
@@ -59,7 +60,7 @@ const LandingPage = () => {
                         "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBi65eva_rnXWJHh3189oHA8of-L_85Jh6whHT5FRHBzw2y1UzTijJMZ5AefocHfMy8FIjWwVz2KrP3G0SYgBQ0zJdus3W5qc-PBZLehfGZZBeXgB0gQR5X1vWompZOsHKvyEU5HNza0jGl5t9YV6OKwfzCXoi_MIQahDx63Zx-v_MNwWtUs6I9zEv-uYB0z6gMCBnHCC1GrmzNatUlhNc2Gll1vWVu4FcEMlimldCWUPVyW79J-XQY_f_KQCBjg01uq13MRd7gMiX')",
                     }}
                   />
-                  
+
                   <div className="absolute inset-0 bg-linear-to-tr from-background-dark/80 via-transparent to-transparent"></div>
 
                   <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-white/10 bg-slate-900/80 p-4 backdrop-blur-md">

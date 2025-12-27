@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const NavBar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
@@ -10,7 +12,7 @@ const NavBar = () => {
               </span>
             </div>
             <h2 className="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">
-              MedAI Analyze
+              <Link href="/">PneumoScan</Link>
             </h2>
           </div>
           <div className="hidden md:flex items-center gap-8">
