@@ -1,4 +1,5 @@
 import ImageUploadHeader from "@/components/headers/ImageUploadNavBar"
+import Image from "next/image"
 
 const Results = () => {
     return (
@@ -27,7 +28,7 @@ const Results = () => {
 </div>
 <div className="flex-1 flex items-center justify-center overflow-hidden relative bg-[#050505]">
 <div className="absolute inset-0 opacity-10 pointer-events-none" style={{backgroundImage: "linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 50px 50px"}}></div>
-<img alt="Chest X-Ray scan showing lungs and ribcage with slight opacity in the lower left lung" className="max-w-full max-h-full object-contain opacity-90 transition-transform duration-200 scale-100" data-alt="Chest X-Ray scan showing lungs and ribcage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgPBxqCWv5Y2yUEifeDr_aGdJ5eEVZxSTZi_rl5-5nzuRRB-kqGNaXYaijLkwy-b4zgYyeKYCmiLcfawxeO8nJgym-BMAomBxJHOObTyDIVbTrdIgt6L010iOPjI4r5jQ8kMW3lgXs-lWd_KTmf3AgLOndrtsoqZ1TcZZoUBW4k_3xMzNMXqsA4tQA5dEbYxoz41F5CP-HbCU4MUx7Ctn90_EC6HdE9P3GIjp_nR_mPYYaqx-ERFVyNSb2aNu8eZ5bDj1o-S50_XxE"/>
+<Image alt="Chest X-Ray scan showing lungs and ribcage with slight opacity in the lower left lung" className="max-w-full max-h-full object-contain opacity-90 transition-transform duration-200 scale-100" data-alt="Chest X-Ray scan showing lungs and ribcage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgPBxqCWv5Y2yUEifeDr_aGdJ5eEVZxSTZi_rl5-5nzuRRB-kqGNaXYaijLkwy-b4zgYyeKYCmiLcfawxeO8nJgym-BMAomBxJHOObTyDIVbTrdIgt6L010iOPjI4r5jQ8kMW3lgXs-lWd_KTmf3AgLOndrtsoqZ1TcZZoUBW4k_3xMzNMXqsA4tQA5dEbYxoz41F5CP-HbCU4MUx7Ctn90_EC6HdE9P3GIjp_nR_mPYYaqx-ERFVyNSb2aNu8eZ5bDj1o-S50_XxE"/>
 <div className="absolute top-[45%] left-[55%] w-32 h-32 bg-primary/30 rounded-full blur-2xl mix-blend-screen pointer-events-none animate-pulse"></div>
 <div className="absolute top-[45%] left-[55%] w-24 h-24 border-2 border-primary/50 border-dashed rounded-full pointer-events-none flex items-center justify-center">
 <span className="bg-primary text-white text-[10px] font-bold px-1 rounded absolute -top-3">94%</span>

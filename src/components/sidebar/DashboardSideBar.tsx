@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 const DashboardSideBar = () => {
     return (
@@ -16,32 +17,36 @@ style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6
 </div>
 
 <nav className="flex flex-col gap-2">
-<a className="flex items-center gap-3 px-3 py-3 rounded-lg bg-[#233348] border border-border-dark/50 transition-colors group" href="#">
+<Link className="flex items-center gap-3 px-3 py-3 rounded-lg bg-[#233348] border border-border-dark/50 transition-colors group" href="/dashboard">
 <span className="material-symbols-outlined text-primary" style={{fontSize: "24px"}}>dashboard</span>
 <p className="text-white text-sm font-medium leading-normal">Dashboard</p>
-</a>
-<a className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="#">
+</Link>
+<Link className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="/patient-list">
 <span className="material-symbols-outlined group-hover:text-white transition-colors" style={{fontSize: "24px"}}>group</span>
 <p className="text-sm font-medium leading-normal">Patient List</p>
-</a>
-<a className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="#">
+</Link>
+<Link className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="/upload-history">
 <span className="material-symbols-outlined group-hover:text-white transition-colors" style={{fontSize: "24px"}}>history</span>
 <p className="text-sm font-medium leading-normal">Upload History</p>
-</a>
-<a className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="#">
+</Link>
+{/* <a className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="#">
 <span className="material-symbols-outlined group-hover:text-white transition-colors" style={{fontSize: "24px"}}>settings</span>
 <p className="text-sm font-medium leading-normal">Settings</p>
-</a>
-<a className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="#">
+</a> */}
+<Link className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#1a2636] transition-colors group text-[#92a9c9] hover:text-white" href="/profile">
 <span className="material-symbols-outlined group-hover:text-white transition-colors" style={{fontSize: "24px"}}>account_circle</span>
 <p className="text-sm font-medium leading-normal">Profile</p>
-</a>
+</Link>
 </nav>
 </div>
+
+<Link href='/image-upload'>
 <button className="flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-4 bg-primary hover:bg-blue-600 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-blue-900/20">
 <span className="material-symbols-outlined" style={{fontSize: "20px"}}>upload_file</span>
 <span className="truncate">Upload New Scan</span>
 </button>
+
+</Link>
 </div>
 </aside>
     )

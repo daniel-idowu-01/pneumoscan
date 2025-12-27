@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 const ImageUploadNavBar = () => {
     return (
@@ -7,14 +8,16 @@ const ImageUploadNavBar = () => {
 <div className="flex items-center justify-center size-8 rounded bg-primary/10 dark:bg-primary/20 text-primary">
 <span className="material-symbols-outlined text-2xl">radiology</span>
 </div>
-<h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">PneumoScan</h2>
+<h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">
+    <Link href="/">PneumoScan</Link>
+    </h2>
 </div>
 <nav className="hidden md:flex flex-1 justify-end items-center gap-8">
 <div className="flex items-center gap-6">
-<a className="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
-<a className="text-sm font-medium hover:text-primary transition-colors text-primary" href="#">New Scan</a>
-<a className="text-sm font-medium hover:text-primary transition-colors" href="#">History</a>
-<a className="text-sm font-medium hover:text-primary transition-colors" href="#">Settings</a>
+<Link className="text-sm font-medium hover:text-primary transition-colors" href="/dashboard">Dashboard</Link>
+<Link className="text-sm font-medium hover:text-primary transition-colors text-primary" href="/image-upload">New Scan</Link>
+<Link className="text-sm font-medium hover:text-primary transition-colors" href="/upload-history">History</Link>
+<Link className="text-sm font-medium hover:text-primary transition-colors" href="/profile">Profile</Link>
 </div>
 <div className="h-6 w-px bg-border-light dark:bg-[#233348]"></div>
 <div className="flex items-center gap-3">

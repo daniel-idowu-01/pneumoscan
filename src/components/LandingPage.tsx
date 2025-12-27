@@ -27,10 +27,11 @@ const LandingPage = () => {
                   models for faster, more accurate preliminary findings.
                 </p>
                 <div className="flex flex-wrap gap-4 pt-2">
-                  <button className="flex h-12 min-w-35 items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-blue-600 hover:scale-[1.02] transition-all">
-                    <Link href="/signup">Create Account</Link>
+                  <Link href="/signup"><button className="flex h-12 min-w-35 items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-blue-600 hover:scale-[1.02] transition-all cursor-pointer">
+                    Create Account
                   </button>
-                  <button className="flex h-12 min-w-35 items-center justify-center rounded-lg border border-slate-200 bg-white px-6 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors">
+                  </Link>
+                  <button className="flex h-12 min-w-35 items-center justify-center rounded-lg border border-slate-200 bg-white px-6 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors cursor-pointer">
                     Learn More
                   </button>
                 </div>
@@ -164,9 +165,10 @@ const LandingPage = () => {
                 Join thousands of radiologists using MedAI Analyze to enhance
                 precision and speed.
               </p>
-              <button className="mt-4 flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-blue-600 hover:scale-105 transition-all">
+              <Link href='/signup'>
+              <button className="mt-4 flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-blue-600 hover:scale-105 transition-all cursor-pointer">
                 Start Your Free Trial
-              </button>
+              </button></Link>
             </div>
           </div>
         </section>

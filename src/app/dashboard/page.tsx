@@ -169,7 +169,7 @@ const Dashboard = () => {
 <div className="p-4 border-t border-border-dark bg-[#111822] flex justify-center">
 <button className="text-sm text-[#92a9c9] hover:text-white flex items-center gap-1">
                                 Show more results
-                                <span className="material-symbols-outlined" style={{fontSize: "16px;"}}>expand_more</span>
+                                <span className="material-symbols-outlined" style={{fontSize: "16px"}}>expand_more</span>
 </button>
 </div>
 </div>
