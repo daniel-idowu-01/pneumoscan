@@ -1,6 +1,6 @@
-import Link from "next/link";
-import AuthHeader from "@/components/headers/AuthNavBar";
-import AuthSideComp from "@/components/AuthSideComp";
+import Link from 'next/link'
+import AuthHeader from '@/components/headers/AuthNavBar'
+import AuthSideComp from '@/components/AuthSideComp'
 
 const Login = () => {
   return (
@@ -16,7 +16,7 @@ const Login = () => {
 
           <section className="w-full max-w-5xl overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-xl border border-gray-200 dark:border-[#233348] flex flex-col md:flex-row min-h-150">
             <AuthSideComp />
-            
+
             <div className="w-full md:w-1/2 p-6 sm:p-10 lg:p-14 flex flex-col justify-center bg-white dark:bg-surface-dark relative">
               <div className="max-w-100 mx-auto w-full">
                 <div className="mb-8">
@@ -96,9 +96,7 @@ const Login = () => {
                     type="button"
                   >
                     <span>Log In</span>
-                    <span className="material-symbols-outlined text-[20px]">
-                      arrow_forward
-                    </span>
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                   </button>
                 </form>
                 <div className="mt-8 text-center">
@@ -114,16 +112,12 @@ const Login = () => {
                 </div>
                 <div className="mt-10 pt-6 border-t border-gray-100 dark:border-[#233348] flex items-center justify-center gap-4 text-xs text-slate-400 dark:text-slate-500">
                   <div className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[16px]">
-                      lock
-                    </span>
+                    <span className="material-symbols-outlined text-[16px]">lock</span>
                     256-bit Encryption
                   </div>
                   <span>•</span>
                   <div className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[16px]">
-                      privacy_tip
-                    </span>
+                    <span className="material-symbols-outlined text-[16px]">privacy_tip</span>
                     Privacy Protected
                   </div>
                 </div>
@@ -136,7 +130,7 @@ const Login = () => {
         </footer>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

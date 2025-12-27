@@ -1,6 +1,6 @@
-import Link from "next/link";
-import AuthHeader from "@/components/headers/AuthNavBar";
-import AuthSideComp from "@/components/AuthSideComp";
+import Link from 'next/link'
+import AuthHeader from '@/components/headers/AuthNavBar'
+import AuthSideComp from '@/components/AuthSideComp'
 
 const SignUp = () => {
   return (
@@ -116,9 +116,7 @@ const SignUp = () => {
                     type="button"
                   >
                     <span>Create Account</span>
-                    <span className="material-symbols-outlined text-[20px]">
-                      arrow_forward
-                    </span>
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                   </button>
                 </form>
                 <div className="mt-8 text-center">
@@ -134,16 +132,12 @@ const SignUp = () => {
                 </div>
                 <div className="mt-10 pt-6 border-t border-gray-100 dark:border-[#233348] flex items-center justify-center gap-4 text-xs text-slate-400 dark:text-slate-500">
                   <div className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[16px]">
-                      lock
-                    </span>
+                    <span className="material-symbols-outlined text-[16px]">lock</span>
                     256-bit Encryption
                   </div>
                   <span>•</span>
                   <div className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[16px]">
-                      privacy_tip
-                    </span>
+                    <span className="material-symbols-outlined text-[16px]">privacy_tip</span>
                     Privacy Protected
                   </div>
                 </div>
@@ -156,7 +150,7 @@ const SignUp = () => {
         </footer>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

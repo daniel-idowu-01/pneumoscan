@@ -5,13 +5,9 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex items-center gap-2">
             <div className="flex size-6 items-center justify-center rounded bg-primary/20 text-primary">
-              <span className="material-symbols-outlined text-sm">
-                radiology
-              </span>
+              <span className="material-symbols-outlined text-sm">radiology</span>
             </div>
-            <span className="text-base font-bold text-slate-900 dark:text-white">
-              PneumoScan
-            </span>
+            <span className="text-base font-bold text-slate-900 dark:text-white">PneumoScan</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             <a
@@ -39,23 +35,17 @@ const Footer = () => {
             © 2024 PneumoScan Analyze. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <a
-              className="text-slate-400 hover:text-white transition-colors"
-              href="#"
-            >
+            <a className="text-slate-400 hover:text-white transition-colors" href="#">
               <span className="material-symbols-outlined text-xl">public</span>
             </a>
-            <a
-              className="text-slate-400 hover:text-white transition-colors"
-              href="#"
-            >
+            <a className="text-slate-400 hover:text-white transition-colors" href="#">
               <span className="material-symbols-outlined text-xl">mail</span>
             </a>
           </div>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 const NavBar = () => {
   return (
@@ -7,9 +7,7 @@ const NavBar = () => {
         <div className="flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
           <div className="flex items-center gap-3">
             <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <span className="material-symbols-outlined text-2xl">
-                radiology
-              </span>
+              <span className="material-symbols-outlined text-2xl">radiology</span>
             </div>
             <h2 className="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">
               <Link href="/">PneumoScan</Link>
@@ -46,7 +44,7 @@ const NavBar = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

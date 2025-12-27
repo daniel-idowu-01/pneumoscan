@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Design tokens */
 @theme {
@@ -21,8 +21,8 @@
   --color-border-dark: #1e293b;
   --color-bg-border-dark: #1e293b;
 
-  --font-display: "Inter", system-ui, sans-serif;
-  --font-body: "Noto Sans", system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Noto Sans', system-ui, sans-serif;
 
   --radius-sm: 0.25rem;
   --radius-lg: 0.5rem;
@@ -38,28 +38,28 @@
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #101822; 
+  background: #101822;
 }
 ::-webkit-scrollbar-thumb {
-    background: #2a3b50; 
-    border-radius: 4px;
+  background: #2a3b50;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #3e526a; 
+  background: #3e526a;
 }
 
- .custom-scrollbar::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
   height: 8px;
   width: 8px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #192433; 
+  background: #192433;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #324867; 
+  background: #324867;
   border-radius: 4px;
 }
