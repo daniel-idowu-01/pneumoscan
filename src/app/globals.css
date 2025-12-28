@@ -17,7 +17,7 @@
   --color-text-muted: #92a9c9;
   --color-text-secondary: #92a9c9;
 
-  --color-border-light: #e2e8f0;
+  --color-border-light: #2a3446;
   --color-border-dark: #1e293b;
   --color-bg-border-dark: #1e293b;
 
@@ -37,49 +37,51 @@
   }
 }
 
-/* Light mode scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #101822;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #2a3b50;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Dark mode scrollbar */
-.dark ::-webkit-scrollbar-track {
-  background: #101822;
-}
-.dark ::-webkit-scrollbar-thumb {
-  background: #2a3b50;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
   background: #3e526a;
 }
 
-/* Custom scrollbar for specific elements */
 .custom-scrollbar::-webkit-scrollbar {
   height: 8px;
   width: 8px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-.dark .custom-scrollbar::-webkit-scrollbar-track {
   background: #192433;
 }
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+.custom-scrollbar::-webkit-scrollbar-thumb {
   background: #324867;
+  border-radius: 4px;
+}
+llbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
+}llbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
+}llbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
+}llbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
+}llbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
+}llbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
+}llbar-thumb {
+  background: #324867; 
+  border-radius: 4px;
 }
