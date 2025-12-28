@@ -67,3 +67,24 @@ export const testimonials: Testimonial[] = [
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDN6eFa1I0ljPt_TA9ETg_Lwmtnfur1Wv-CYa956xHc-K0xIHimyiE03TWpcH2Y_WiRdYxNVGrc5BZAHQ9R1IhBEl7T9cfRjWIWwwrtPsXHxmMxaXnRy1Nnf42PDDJjVkR2CYfSLYeZE6ohzKm4rIcfpRMlITW59vXmOP9-19x2BQKZ75RfmG5YFwvFPcbdQQP2JW5PrwulbUGxY6O9nuuJvSF059udyPL23D13SeQZ0VewFNJaEl4RUW7IWQp9o8eufWthwikxBfve',
   },
 ]
+
+export const FEATURES = [
+  {
+    icon: 'lock_person',
+    title: 'HIPAA Compliant Security',
+    description:
+      'Enterprise-grade AES-256 encryption and full regulatory compliance ensure patient data protection.',
+  },
+  {
+    icon: 'bolt',
+    title: 'Instant Analysis',
+    description:
+      'Optimized inference engine designed for high-volume clinical workflows.',
+  },
+  {
+    icon: 'fact_check',
+    title: 'High Accuracy Models',
+    description:
+      'Validated against diverse datasets to support better clinical decisions.',
+  },
+]

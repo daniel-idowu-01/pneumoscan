@@ -54,3 +54,14 @@ export type ContactInputProps = {
   type?: string
   optional?: boolean
 }
+
+export type FeaturesProps = {
+  icon: string
+  title: string
+  description: string
+}
+
+export type SectionHeaderProps = {
+  title: string
+  subtitle?: string
+}
