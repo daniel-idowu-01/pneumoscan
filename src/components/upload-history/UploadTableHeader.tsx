@@ -2,14 +2,7 @@ const UploadTableHeader = () => {
   return (
     <thead>
       <tr className="bg-[#192433] border-b border-border-dark">
-        {[
-          'Upload Date',
-          'Patient ID',
-          'Preview',
-          'AI Analysis',
-          'Status',
-          'Actions',
-        ].map((label) => (
+        {['Upload Date', 'Patient ID', 'Preview', 'AI Analysis', 'Status', 'Actions'].map(label => (
           <th
             key={label}
             className={[

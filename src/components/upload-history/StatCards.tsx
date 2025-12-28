@@ -1,4 +1,4 @@
-import StatsCard from "./StatCard"
+import StatsCard from './StatCard'
 
 const StatsCards = () => {
   return (
