@@ -65,3 +65,12 @@ export type SectionHeaderProps = {
   title: string
   subtitle?: string
 }
+
+export type DashboardStatsCardProps = {
+  title: string
+  value: string
+  delta?: string
+  icon: string
+  spinning?: boolean
+  deltaColor?: string
+}
