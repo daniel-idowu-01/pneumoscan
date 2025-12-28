@@ -34,12 +34,17 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <button className="hidden sm:flex h-9 items-center justify-center rounded-lg px-4 text-sm font-semibold text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800 transition-colors cursor-pointer">
-              Log In
-            </button>
-            <button className="flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-blue-600 transition-all cursor-pointer">
-              Get Started
-            </button>
+            <Link href="/login">
+              <button className="hidden sm:flex h-9 items-center justify-center rounded-lg px-4 text-sm font-semibold text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                Log In
+              </button>
+            </Link>
+
+            <Link href="/signup">
+              <button className="flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-blue-600 transition-all cursor-pointer">
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
       </div>

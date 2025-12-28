@@ -5,7 +5,7 @@ import AuthSideComp from '@/components/AuthSideComp'
 const Login = () => {
   return (
     <>
-      <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden dark">
+      <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
         <AuthHeader />
 
         <main className="flex-1 flex items-center justify-center p-4 md:p-8 relative">
