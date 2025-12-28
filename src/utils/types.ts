@@ -74,3 +74,12 @@ export type DashboardStatsCardProps = {
   spinning?: boolean
   deltaColor?: string
 }
+
+export interface ProfileStatCardProps {
+  label: string
+  value: string
+  icon: string
+  footer: string
+  iconClass?: string
+  footerClass?: string
+}
