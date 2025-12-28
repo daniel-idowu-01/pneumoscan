@@ -1,4 +1,4 @@
-import { DashboardStatsCardProps } from "@/utils/types"
+import { DashboardStatsCardProps } from '@/utils/types'
 
 const StatCard = ({
   title,
@@ -12,9 +12,7 @@ const StatCard = ({
     <div className="flex flex-col gap-2 rounded-xl p-6 bg-surface-dark border border-border-dark">
       <div className="flex justify-between">
         <p className="text-[#92a9c9] text-sm">{title}</p>
-        <span
-          className={`material-symbols-outlined ${spinning ? 'animate-spin' : ''}`}
-        >
+        <span className={`material-symbols-outlined ${spinning ? 'animate-spin' : ''}`}>
           {icon}
         </span>
       </div>

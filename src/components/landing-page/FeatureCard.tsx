@@ -1,4 +1,4 @@
-import { FeaturesProps } from "@/utils/types"
+import { FeaturesProps } from '@/utils/types'
 
 const FeatureCard = ({ icon, title, description }: FeaturesProps) => {
   return (
@@ -8,12 +8,8 @@ const FeatureCard = ({ icon, title, description }: FeaturesProps) => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-          {title}
-        </h3>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
-          {description}
-        </p>
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white">{title}</h3>
+        <p className="text-sm text-slate-600 dark:text-slate-400">{description}</p>
       </div>
     </div>
   )

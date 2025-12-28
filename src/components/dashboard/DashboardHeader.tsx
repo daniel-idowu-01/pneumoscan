@@ -10,9 +10,7 @@ const DashboardHeader = () => {
       <div className="p-8 pb-6">
         <div className="max-w-[1200px] mx-auto">
           <p className="text-blue-300 text-sm uppercase tracking-wider">Radiology Portal</p>
-          <h2 className="text-white text-3xl md:text-4xl font-bold">
-            Welcome back, Dr. Smith
-          </h2>
+          <h2 className="text-white text-3xl md:text-4xl font-bold">Welcome back, Dr. Smith</h2>
           <p className="text-slate-300 mt-2 max-w-2xl">
             You have 3 scans currently processing and 12 completed analyses ready for review.
           </p>

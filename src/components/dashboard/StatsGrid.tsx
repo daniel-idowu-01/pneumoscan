@@ -1,21 +1,11 @@
-import StatCard from "./StatsCard"
+import StatCard from './StatsCard'
 
 const StatsGrid = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <StatCard
-        title="Total Uploads"
-        value="1,240"
-        delta="+5%"
-        icon="folder_open"
-      />
+      <StatCard title="Total Uploads" value="1,240" delta="+5%" icon="folder_open" />
 
-      <StatCard
-        title="Processing"
-        value="3"
-        icon="progress_activity"
-        spinning
-      />
+      <StatCard title="Processing" value="3" icon="progress_activity" spinning />
 
       <StatCard
         title="Completed Today"

@@ -13,8 +13,8 @@ const HeroContent = () => {
       </h1>
 
       <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-        Securely upload and analyze chest X-rays in seconds. Supporting radiologists
-        with deep learning models for faster preliminary findings.
+        Securely upload and analyze chest X-rays in seconds. Supporting radiologists with deep
+        learning models for faster preliminary findings.
       </p>
 
       <HeroActions />

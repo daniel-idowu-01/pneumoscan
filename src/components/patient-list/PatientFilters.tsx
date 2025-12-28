@@ -27,18 +27,10 @@ const PatientFilters = () => {
   )
 }
 
-const FilterButton = ({
-  label,
-  icon = 'expand_more',
-}: {
-  label: string
-  icon?: string
-}) => {
+const FilterButton = ({ label, icon = 'expand_more' }: { label: string; icon?: string }) => {
   return (
     <button className="group flex items-center gap-2 px-3 py-2 bg-slate-50 dark:bg-[#233348] rounded-lg border border-slate-200 dark:border-transparent hover:bg-slate-100 dark:hover:bg-[#2d4059] transition-colors">
-      <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
-        {label}
-      </span>
+      <span className="text-sm font-medium text-slate-700 dark:text-slate-200">{label}</span>
       <span className="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white">
         {icon}
       </span>

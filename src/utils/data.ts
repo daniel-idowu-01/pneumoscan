@@ -78,13 +78,11 @@ export const FEATURES = [
   {
     icon: 'bolt',
     title: 'Instant Analysis',
-    description:
-      'Optimized inference engine designed for high-volume clinical workflows.',
+    description: 'Optimized inference engine designed for high-volume clinical workflows.',
   },
   {
     icon: 'fact_check',
     title: 'High Accuracy Models',
-    description:
-      'Validated against diverse datasets to support better clinical decisions.',
+    description: 'Validated against diverse datasets to support better clinical decisions.',
   },
 ]

@@ -1,4 +1,4 @@
-import { SectionHeaderProps } from "@/utils/types"
+import { SectionHeaderProps } from '@/utils/types'
 
 const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => {
   return (
@@ -7,9 +7,7 @@ const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => {
         {title}
       </h2>
       {subtitle && (
-        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
-          {subtitle}
-        </p>
+        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl">{subtitle}</p>
       )}
     </div>
   )
