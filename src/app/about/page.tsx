@@ -1,11 +1,12 @@
-import AboutStats from '@/components/AboutStats'
+import AboutStats from '@/components/about/AboutStats'
 import CoreValuesSection from '@/components/core-value/CoreValueSection'
 import Footer from '@/components/Footer'
 import NavBar from '@/components/headers/NavBar'
-import HeroSection from '@/components/HeroSection'
+import HeroSection from '@/components/about/HeroSection'
 import TeamSection from '@/components/TeamSection'
 import TestimonialsSection from '@/components/testimonials/TestimonialsSection'
 import { teamMembers, testimonials } from '@/utils/data'
+import Link from 'next/link'
 
 const About = () => {
   return (
@@ -41,12 +42,17 @@ const About = () => {
                 Join 200+ hospitals already using MedScan AI to improve patient care.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-2 w-full justify-center">
-                <button className="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-blue-600 transition-colors text-white text-base font-bold leading-normal tracking-[0.015em]">
-                  <span className="truncate">Start Free Trial</span>
-                </button>
-                <button className="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-border-light hover:bg-surface-dark transition-colors text-white text-base font-bold leading-normal tracking-[0.015em]">
-                  <span className="truncate">Contact Sales</span>
-                </button>
+                <Link href="/signup">
+                  <button className="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-blue-600 transition-colors text-white text-base font-bold leading-normal tracking-[0.015em]">
+                    <span className="truncate">Start Free Trial</span>
+                  </button>
+                </Link>
+
+                <Link href="/contact-us">
+                  <button className="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-border-light hover:bg-surface-dark transition-colors text-white text-base font-bold leading-normal tracking-[0.015em]">
+                    <span className="truncate">Contact Sales</span>
+                  </button>
+                </Link>
               </div>
               <div className="flex gap-6 mt-8 opacity-50 grayscale">
                 <div className="flex items-center gap-2">
