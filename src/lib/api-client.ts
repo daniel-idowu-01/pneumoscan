@@ -1,7 +1,3 @@
-/**
- * API Client for making authenticated requests
- */
-
 interface RequestOptions extends RequestInit {
     requiresAuth?: boolean
   }
@@ -12,10 +8,6 @@ interface RequestOptions extends RequestInit {
     constructor(baseURL: string = '') {
       this.baseURL = baseURL
     }
-  
-    /**
-     * Make an authenticated request
-     */
     private async request<T>(
       endpoint: string,
       options: RequestOptions = {}
@@ -24,7 +16,7 @@ interface RequestOptions extends RequestInit {
   
       const config: RequestInit = {
         ...fetchOptions,
-        credentials: 'include', // Include cookies
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           ...fetchOptions.headers,
@@ -34,7 +26,6 @@ interface RequestOptions extends RequestInit {
       try {
         let response = await fetch(`${this.baseURL}${endpoint}`, config)
   
-        // If unauthorized and requires auth, try to refresh token
         if (response.status === 401 && requiresAuth) {
           const refreshResponse = await fetch('/api/auth/refresh', {
             method: 'POST',
@@ -42,10 +33,8 @@ interface RequestOptions extends RequestInit {
           })
   
           if (refreshResponse.ok) {
-            // Retry original request
             response = await fetch(`${this.baseURL}${endpoint}`, config)
           } else {
-            // Refresh failed, redirect to login
             if (typeof window !== 'undefined') {
               window.location.href = '/login?error=session-expired'
             }
@@ -72,16 +61,12 @@ interface RequestOptions extends RequestInit {
       }
     }
   
-    /**
-     * GET request
-     */
+   
     async get<T>(endpoint: string, options?: RequestOptions): Promise<{ data: T; error?: string }> {
       return this.request<T>(endpoint, { ...options, method: 'GET' })
     }
   
-    /**
-     * POST request
-     */
+    
     async post<T>(
       endpoint: string,
       body?: any,
@@ -94,9 +79,6 @@ interface RequestOptions extends RequestInit {
       })
     }
   
-    /**
-     * PUT request
-     */
     async put<T>(
       endpoint: string,
       body?: any,
@@ -109,9 +91,6 @@ interface RequestOptions extends RequestInit {
       })
     }
   
-    /**
-     * PATCH request
-     */
     async patch<T>(
       endpoint: string,
       body?: any,
@@ -123,17 +102,11 @@ interface RequestOptions extends RequestInit {
         body: JSON.stringify(body),
       })
     }
-  
-    /**
-     * DELETE request
-     */
+
     async delete<T>(endpoint: string, options?: RequestOptions): Promise<{ data: T; error?: string }> {
       return this.request<T>(endpoint, { ...options, method: 'DELETE' })
     }
   
-    /**
-     * Upload file
-     */
     async upload<T>(
       endpoint: string,
       file: File,
@@ -153,7 +126,6 @@ interface RequestOptions extends RequestInit {
           method: 'POST',
           credentials: 'include',
           body: formData,
-          // Don't set Content-Type header, browser will set it with boundary
         })
   
         const data = await response.json()
@@ -176,8 +148,6 @@ interface RequestOptions extends RequestInit {
     }
   }
   
-  // Export singleton instance
   export const apiClient = new APIClient()
   
-  // Export class for custom instances
   export default APIClient

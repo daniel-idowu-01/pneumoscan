@@ -1,7 +1,3 @@
-/**
- * Authentication-related TypeScript types
- */
-
 export interface User {
     id: string
     email: string

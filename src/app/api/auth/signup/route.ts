@@ -10,10 +10,8 @@ import { ObjectId } from 'mongodb'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production'
 
-// Password validation regex
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/
 
-// Validation schema
 const signupSchema = z.object({
   firstName: z.string().min(2, 'First name must be at least 2 characters').max(50),
   lastName: z.string().min(2, 'Last name must be at least 2 characters').max(50),
@@ -34,7 +32,6 @@ const limiter = rateLimit({
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting
     const ip = request.headers.get('x-forwarded-for') || 'unknown'
     const rateLimitResult = await limiter.check(ip, 3) // 3 signups per minute
 
@@ -48,20 +45,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Parse and validate request body
     const body = await request.json()
     const validatedData = signupSchema.parse(body)
 
-    // Sanitize inputs
     const email = sanitizeInput(validatedData.email.toLowerCase())
     const firstName = sanitizeInput(validatedData.firstName)
     const lastName = sanitizeInput(validatedData.lastName)
 
-    // Connect to database
     const db = await getDatabase()
     const usersCollection = db.collection<User>('users')
 
-    // Check if user already exists
     const existingUser = await usersCollection.findOne({ email })
 
     if (existingUser) {
@@ -74,11 +67,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Hash password
     const saltRounds = 12
     const hashedPassword = await bcrypt.hash(validatedData.password, saltRounds)
 
-    // Create user
     const newUser: User = {
       email,
       firstName,
@@ -94,7 +85,6 @@ export async function POST(request: NextRequest) {
     const result = await usersCollection.insertOne(newUser)
     newUser._id = result.insertedId
 
-    // Generate tokens
     const accessToken = jwt.sign(
       {
         userId: newUser._id.toString(),
@@ -109,10 +99,8 @@ export async function POST(request: NextRequest) {
       }
     )
 
-    // Prepare user data
     const userData = userToResponse(newUser)
 
-    // Create response
     const response = NextResponse.json(
       {
         success: true,
@@ -125,7 +113,6 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
 
-    // Set HTTP-only cookie
     response.cookies.set({
       name: 'accessToken',
       value: accessToken,

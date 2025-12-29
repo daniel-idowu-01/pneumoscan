@@ -32,7 +32,7 @@ const HeroSection = ({ title, subtitle, imageUrl }: HeroSectionProps) => {
               style={{ backgroundImage: `url('${imageUrl}')` }}
             >
               <div className="absolute inset-0 bg-primary/20 mix-blend-overlay" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-background-dark via-transparent to-transparent" />
             </div>
           </div>
         </div>

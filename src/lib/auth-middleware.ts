@@ -11,15 +11,11 @@ export interface AuthenticatedRequest extends NextRequest {
   }
 }
 
-/**
- * Middleware to verify JWT token and authenticate requests
- */
 export async function authMiddleware(
   request: NextRequest,
   handler: (req: AuthenticatedRequest) => Promise<NextResponse>
 ): Promise<NextResponse> {
   try {
-    // Get token from cookie or Authorization header
     const accessToken =
       request.cookies.get('accessToken')?.value ||
       request.headers.get('authorization')?.replace('Bearer ', '')
@@ -34,13 +30,11 @@ export async function authMiddleware(
       )
     }
 
-    // Verify token
     const decoded = jwt.verify(accessToken, JWT_SECRET, {
       issuer: 'pneumoscan-api',
       audience: 'pneumoscan-client',
     }) as any
 
-    // Attach user info to request
     const authenticatedRequest = request as AuthenticatedRequest
     authenticatedRequest.user = {
       userId: decoded.userId,
@@ -48,7 +42,6 @@ export async function authMiddleware(
       role: decoded.role,
     }
 
-    // Call the handler
     return await handler(authenticatedRequest)
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
@@ -83,9 +76,6 @@ export async function authMiddleware(
   }
 }
 
-/**
- * Role-based access control middleware
- */
 export function requireRole(allowedRoles: string[]) {
   return async (
     request: AuthenticatedRequest,

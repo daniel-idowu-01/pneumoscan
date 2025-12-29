@@ -22,7 +22,7 @@ const TeamSection = ({ title, subtitle, members }: TeamSectionProps) => {
             {members.map(member => (
               <div key={member.name} className="flex flex-col gap-3 group">
                 <div
-                  className="w-full aspect-[4/5] rounded-xl bg-cover bg-center overflow-hidden border border-border-light grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="w-full aspect-4/5 rounded-xl bg-cover bg-center overflow-hidden border border-border-light grayscale group-hover:grayscale-0 transition-all duration-300"
                   style={{ backgroundImage: `url('${member.imageUrl}')` }}
                   aria-label={member.alt}
                 />
