@@ -9,7 +9,7 @@ const PersonalInfoSection = () => {
         </span>
       </div>
 
-      <div className="bg-[#192433] border border-[#233348] rounded-xl p-6">
+      <div className="bg-[#192433] border border-input-border rounded-xl p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <label className="flex flex-col gap-2">
                     <span className="text-white text-sm font-medium">First Name</span>

@@ -44,7 +44,7 @@ const SettingsSideBar = () => {
             <p className="text-sm font-medium leading-normal">Account Activity</p>
           </a>
           <a
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#92a9c9] hover:bg-[#192433] hover:text-white transition-all group mt-4 border-t border-[#233348]"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#92a9c9] hover:bg-[#192433] hover:text-white transition-all group mt-4 border-t border-input-border"
             href="#"
           >
             <span className="material-symbols-outlined text-[20px] group-hover:text-white">

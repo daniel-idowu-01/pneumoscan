@@ -1,4 +1,4 @@
-import { SectionHeaderProps } from '@/utils/types'
+import { SectionHeaderProps } from "@/types/props"
 
 const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => {
   return (

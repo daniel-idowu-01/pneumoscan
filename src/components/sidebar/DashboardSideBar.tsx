@@ -26,7 +26,7 @@ const DashboardSideBar = () => {
 
           <nav className="flex flex-col gap-2">
             <Link
-              className="flex items-center gap-3 px-3 py-3 rounded-lg bg-[#233348] border border-border-dark/50 transition-colors group"
+              className="flex items-center gap-3 px-3 py-3 rounded-lg bg-input-border border border-border-dark/50 transition-colors group"
               href="/dashboard"
             >
               <span className="material-symbols-outlined text-primary" style={{ fontSize: '24px' }}>

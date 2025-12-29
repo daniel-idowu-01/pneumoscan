@@ -1,4 +1,4 @@
-import { ContactInputProps } from '@/utils/types'
+import { ContactInputProps } from "@/types/props"
 
 const Input = ({ label, placeholder, type = 'text', optional }: ContactInputProps) => {
   return (

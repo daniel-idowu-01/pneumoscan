@@ -7,7 +7,7 @@ const Results = () => {
       <ImageUploadHeader />
       <main className="flex-1 flex overflow-hidden">
         <section className="flex-1 flex flex-col min-w-0 bg-black relative group/viewer">
-          <div className="absolute top-0 left-0 right-0 p-4 z-10 bg-gradient-to-b from-black/80 to-transparent flex justify-between items-start pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 p-4 z-10 bg-linear-to-b from-black/80 to-transparent flex justify-between items-start pointer-events-none">
             <div className="pointer-events-auto flex flex-col gap-1">
               <div className="flex flex-wrap gap-2 items-center bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 w-fit">
                 <a className="text-text-secondary text-xs font-medium hover:text-white" href="#">
@@ -176,7 +176,7 @@ const Results = () => {
                   </div>
                   <div className="w-full bg-slate-200 dark:bg-surface-dark rounded-full h-2">
                     <div
-                      className="bg-gradient-to-r from-blue-600 to-primary h-2 rounded-full shadow-[0_0_10px_rgba(19,109,236,0.5)]"
+                      className="bg-linear-to-r from-blue-600 to-primary h-2 rounded-full shadow-[0_0_10px_rgba(19,109,236,0.5)]"
                       style={{ width: '94%' }}
                     ></div>
                   </div>

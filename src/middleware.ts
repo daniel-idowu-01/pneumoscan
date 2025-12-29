@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 // Routes that require authentication
 const protectedRoutes = [
   '/dashboard',
-  '/profile',
+ // '/profile',
   '/patient-list',
   '/upload-history',
   '/image-upload',

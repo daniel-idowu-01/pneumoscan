@@ -2,7 +2,7 @@ const ProfessionalDetailsSection = () => {
   return (
     <section>
       <h2 className="text-white text-xl font-bold mb-4">Professional Details</h2>
-      <div className="bg-[#192433] border border-[#233348] rounded-xl p-6 flex flex-col gap-6">
+      <div className="bg-[#192433] border border-input-border rounded-xl p-6 flex flex-col gap-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <label className="flex flex-col gap-2">
                     <span className="text-white text-sm font-medium">
@@ -33,7 +33,7 @@ const ProfessionalDetailsSection = () => {
                     Medical License / Certification
                   </span>
                   <div className="border-2 border-dashed border-[#324867] hover:border-primary/50 transition-colors rounded-xl bg-[#111822] p-8 flex flex-col items-center justify-center text-center cursor-pointer group">
-                    <div className="size-12 rounded-full bg-[#233348] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <div className="size-12 rounded-full bg-input-border flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                       <span className="material-symbols-outlined text-white text-[24px]">
                         cloud_upload
                       </span>
@@ -43,7 +43,7 @@ const ProfessionalDetailsSection = () => {
                     </p>
                     <p className="text-[#64748b] text-sm mt-1">PDF, JPG or PNG (max. 5MB)</p>
                   </div>
-                  <div className="flex items-center gap-3 mt-2 bg-[#233348]/50 p-3 rounded-lg border border-[#324867]">
+                  <div className="flex items-center gap-3 mt-2 bg-input-border/50 p-3 rounded-lg border border-[#324867]">
                     <span className="material-symbols-outlined text-emerald-500 text-[20px]">
                       description
                     </span>

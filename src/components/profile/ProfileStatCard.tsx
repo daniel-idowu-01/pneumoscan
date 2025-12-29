@@ -1,4 +1,4 @@
-import { ProfileStatCardProps } from "@/utils/types"
+import { ProfileStatCardProps } from "@/types/props"
 
 const ProfileStatCard = ({
   label,
@@ -9,7 +9,7 @@ const ProfileStatCard = ({
   footerClass,
 }: ProfileStatCardProps) => {
   return (
-    <div className="p-5 rounded-xl bg-[#192433] border border-[#233348] flex flex-col gap-1">
+    <div className="p-5 rounded-xl bg-[#192433] border border-input-border flex flex-col gap-1">
       <div className="flex justify-between items-start mb-2">
         <p className="text-[#92a9c9] text-sm font-medium">{label}</p>
         <span className={`material-symbols-outlined ${iconClass ?? 'text-primary'}`}>

@@ -1,4 +1,4 @@
-import { TestimonialCardProps } from '@/utils/types'
+import { TestimonialCardProps } from "@/types/props"
 
 const TestimonialCard = ({ quote, name, role, avatarUrl }: TestimonialCardProps) => {
   return (

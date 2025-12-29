@@ -1,4 +1,4 @@
-import { FeaturesProps } from '@/utils/types'
+import { FeaturesProps } from "@/types/props"
 
 const FeatureCard = ({ icon, title, description }: FeaturesProps) => {
   return (

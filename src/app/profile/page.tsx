@@ -10,10 +10,10 @@ const Profile = () => {
         <div className="flex flex-1 max-w-[1280px] w-full mx-auto p-4 sm:p-6 lg:p-8 gap-8">
           <SettingsSideBar />
           <main className="flex-1 min-w-0 flex flex-col gap-8 pb-12">
-            <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between p-6 rounded-xl bg-[#192433] border border-[#233348]">
+            <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between p-6 rounded-xl bg-[#192433] border border-input-border">
               <div className="flex gap-5 items-center">
                 <div
-                  className="bg-center bg-no-repeat bg-cover rounded-full h-24 w-24 border-2 border-[#233348] shadow-lg"
+                  className="bg-center bg-no-repeat bg-cover rounded-full h-24 w-24 border-2 border-input-border shadow-lg"
                   data-alt="Large profile photo of Dr. Sarah Mitchell"
                   style={{
                     backgroundImage:
@@ -36,13 +36,13 @@ const Profile = () => {
                   <p className="text-[#64748b] text-sm mt-1">ID: RAD-8922-XRAY</p>
                 </div>
               </div>
-              <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#233348] hover:bg-[#2d4059] text-white rounded-lg text-sm font-bold transition-colors w-full md:w-auto">
+              <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-input-border hover:bg-[#2d4059] text-white rounded-lg text-sm font-bold transition-colors w-full md:w-auto">
                 <span className="material-symbols-outlined text-[18px]">photo_camera</span>
                 <span>Change Photo</span>
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="p-5 rounded-xl bg-[#192433] border border-[#233348] flex flex-col gap-1">
+              <div className="p-5 rounded-xl bg-[#192433] border border-input-border flex flex-col gap-1">
                 <div className="flex justify-between items-start mb-2">
                   <p className="text-[#92a9c9] text-sm font-medium">Scans This Month</p>
                   <span className="material-symbols-outlined text-primary">analytics</span>
@@ -53,7 +53,7 @@ const Profile = () => {
                   +12% from last month
                 </p>
               </div>
-              <div className="p-5 rounded-xl bg-[#192433] border border-[#233348] flex flex-col gap-1">
+              <div className="p-5 rounded-xl bg-[#192433] border border-input-border flex flex-col gap-1">
                 <div className="flex justify-between items-start mb-2">
                   <p className="text-[#92a9c9] text-sm font-medium">Current Plan</p>
                   <span className="material-symbols-outlined text-purple-400">diamond</span>
@@ -61,7 +61,7 @@ const Profile = () => {
                 <p className="text-white text-3xl font-bold">Pro</p>
                 <p className="text-[#92a9c9] text-xs font-medium mt-1">Renews on Oct 24, 2024</p>
               </div>
-              <div className="p-5 rounded-xl bg-[#192433] border border-[#233348] flex flex-col gap-1 sm:col-span-2 lg:col-span-1">
+              <div className="p-5 rounded-xl bg-[#192433] border border-input-border flex flex-col gap-1 sm:col-span-2 lg:col-span-1">
                 <div className="flex justify-between items-start mb-2">
                   <p className="text-[#92a9c9] text-sm font-medium">Model Accuracy</p>
                   <span className="material-symbols-outlined text-blue-400">check_circle</span>
@@ -82,7 +82,7 @@ const Profile = () => {
                   Secure
                 </span>
               </div>
-              <div className="bg-[#192433] border border-[#233348] rounded-xl p-6">
+              <div className="bg-[#192433] border border-input-border rounded-xl p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <label className="flex flex-col gap-2">
                     <span className="text-white text-sm font-medium">First Name</span>
@@ -125,7 +125,7 @@ const Profile = () => {
                   Professional Details
                 </h2>
               </div>
-              <div className="bg-[#192433] border border-[#233348] rounded-xl p-6 flex flex-col gap-6">
+              <div className="bg-[#192433] border border-input-border rounded-xl p-6 flex flex-col gap-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <label className="flex flex-col gap-2">
                     <span className="text-white text-sm font-medium">
@@ -156,7 +156,7 @@ const Profile = () => {
                     Medical License / Certification
                   </span>
                   <div className="border-2 border-dashed border-[#324867] hover:border-primary/50 transition-colors rounded-xl bg-[#111822] p-8 flex flex-col items-center justify-center text-center cursor-pointer group">
-                    <div className="size-12 rounded-full bg-[#233348] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <div className="size-12 rounded-full bg-input-border flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                       <span className="material-symbols-outlined text-white text-[24px]">
                         cloud_upload
                       </span>
@@ -166,7 +166,7 @@ const Profile = () => {
                     </p>
                     <p className="text-[#64748b] text-sm mt-1">PDF, JPG or PNG (max. 5MB)</p>
                   </div>
-                  <div className="flex items-center gap-3 mt-2 bg-[#233348]/50 p-3 rounded-lg border border-[#324867]">
+                  <div className="flex items-center gap-3 mt-2 bg-input-border/50 p-3 rounded-lg border border-[#324867]">
                     <span className="material-symbols-outlined text-emerald-500 text-[20px]">
                       description
                     </span>
@@ -187,8 +187,8 @@ const Profile = () => {
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-white text-xl font-bold tracking-tight">Preferences</h2>
               </div>
-              <div className="bg-[#192433] border border-[#233348] rounded-xl overflow-hidden">
-                <div className="flex items-center justify-between p-5 border-b border-[#233348]">
+              <div className="bg-[#192433] border border-input-border rounded-xl overflow-hidden">
+                <div className="flex items-center justify-between p-5 border-b border-input-border">
                   <div className="flex flex-col gap-0.5">
                     <p className="text-white font-medium">Email Notifications</p>
                     <p className="text-[#92a9c9] text-sm">
@@ -205,7 +205,7 @@ const Profile = () => {
                     <div className="w-11 h-6 bg-[#324867] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                   </label>
                 </div>
-                <div className="flex items-center justify-between p-5 border-b border-[#233348]">
+                <div className="flex items-center justify-between p-5 border-b border-input-border">
                   <div className="flex flex-col gap-0.5">
                     <p className="text-white font-medium">High Sensitivity Mode</p>
                     <p className="text-[#92a9c9] text-sm">
@@ -229,8 +229,8 @@ const Profile = () => {
                 </div>
               </div>
             </section>
-            <div className="flex flex-col sm:flex-row items-center justify-end gap-4 pt-4 border-t border-[#233348]">
-              <button className="px-6 py-3 rounded-lg text-white font-medium hover:bg-[#233348] transition-colors w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-center justify-end gap-4 pt-4 border-t border-input-border">
+              <button className="px-6 py-3 rounded-lg text-white font-medium hover:bg-input-border transition-colors w-full sm:w-auto">
                 Discard Changes
               </button>
               <button className="px-8 py-3 rounded-lg bg-primary hover:bg-blue-600 text-white font-bold shadow-lg shadow-blue-500/20 transition-all w-full sm:w-auto flex items-center justify-center gap-2">

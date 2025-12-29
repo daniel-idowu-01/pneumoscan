@@ -115,7 +115,7 @@ const ImageUpload = () => {
                       />
                     </div>
                   </div>
-                  <div className="h-px bg-border-light dark:bg-[#233348] w-full"></div>
+                  <div className="h-px bg-border-light dark:bg-input-border w-full"></div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="col-span-2">
                       <label className="block text-sm font-medium mb-1.5 text-text-light dark:text-white">
@@ -171,7 +171,7 @@ const ImageUpload = () => {
                   </div>
                 </div>
                 <div className="p-5 border-t border-border-light dark:border-border-dark bg-background-light/50 dark:bg-[#111822]/50 rounded-b-xl flex gap-3">
-                  <button className="flex-1 h-11 rounded-lg border border-border-light dark:border-[#324867] bg-transparent hover:bg-background-light dark:hover:bg-[#233348] text-text-light dark:text-white text-sm font-semibold transition-colors">
+                  <button className="flex-1 h-11 rounded-lg border border-border-light dark:border-[#324867] bg-transparent hover:bg-background-light dark:hover:bg-input-border text-text-light dark:text-white text-sm font-semibold transition-colors">
                     Cancel
                   </button>
                   <button className="flex-[2] h-11 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold shadow-lg shadow-primary/25 transition-all flex items-center justify-center gap-2 group">
@@ -186,7 +186,7 @@ const ImageUpload = () => {
           </div>
         </div>
       </main>
-      <footer className="w-full border-t border-border-light dark:border-[#233348] py-6 mt-10">
+      <footer className="w-full border-t border-border-light dark:border-input-border py-6 mt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-secondary-light dark:text-[#586a84]">
           <p>© 2024 MedScan AI. All rights reserved.</p>
           <div className="flex gap-6">

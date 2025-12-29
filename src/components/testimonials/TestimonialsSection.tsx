@@ -1,5 +1,5 @@
 import TestimonialCard from './TestimonialCard'
-import { TestimonialsSectionProps } from '@/utils/types'
+import { TestimonialsSectionProps } from '@/types/props'
 
 const TestimonialsSection = ({
   title = 'Trusted by Leading Institutions',

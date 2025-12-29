@@ -8,7 +8,7 @@ const QuickUpload = () => {
       </h2>
       <div className="flex flex-col rounded-xl border border-border-dark bg-surface-dark overflow-hidden">
         <div className="flex flex-col items-center gap-6 px-6 py-10 border-2 border-dashed border-[#324867] m-4 rounded-lg bg-[#151f2b] group hover:border-primary/50 transition-colors">
-          <div className="bg-[#233348] p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
+          <div className="bg-input-border p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
             <span className="material-symbols-outlined text-white" style={{ fontSize: '32px' }}>
               cloud_upload
             </span>
@@ -28,8 +28,8 @@ const QuickUpload = () => {
         <div className="px-6 pb-6 pt-2">
           <h3 className="text-white text-sm font-semibold mb-3">Recent Uploads</h3>
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-3 p-2 rounded hover:bg-[#233348] cursor-pointer transition-colors">
-              <div className="bg-[#233348] rounded h-10 w-10 flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3 p-2 rounded hover:bg-input-border cursor-pointer transition-colors">
+              <div className="bg-input-border rounded h-10 w-10 flex items-center justify-center shrink-0">
                 <span
                   className="material-symbols-outlined text-[#92a9c9]"
                   style={{ fontSize: '20px' }}
@@ -48,8 +48,8 @@ const QuickUpload = () => {
                 progress_activity
               </span>
             </div>
-            <div className="flex items-center gap-3 p-2 rounded hover:bg-[#233348] cursor-pointer transition-colors">
-              <div className="bg-[#233348] rounded h-10 w-10 flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3 p-2 rounded hover:bg-input-border cursor-pointer transition-colors">
+              <div className="bg-input-border rounded h-10 w-10 flex items-center justify-center shrink-0">
                 <span
                   className="material-symbols-outlined text-green-500"
                   style={{ fontSize: '20px' }}

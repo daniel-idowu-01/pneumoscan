@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const ImageUploadNavBar = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border-light dark:border-[#233348] bg-surface-light/95 dark:bg-[#111822]/95 backdrop-blur supports-[backdrop-filter]:bg-surface-light/60 dark:supports-[backdrop-filter]:bg-[#111822]/60 px-4 sm:px-10 py-3">
+    <header className="sticky top-0 z-50 w-full border-b border-border-light dark:border-input-border bg-surface-light/95 dark:bg-[#111822]/95 backdrop-blur supports-backdrop-filter:bg-surface-light/60 dark:supports-backdrop-filter:bg-[#111822]/600 px-4 sm:px-10 py-3">
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center size-8 rounded bg-primary/10 dark:bg-primary/20 text-primary">
@@ -39,7 +39,7 @@ const ImageUploadNavBar = () => {
               Profile
             </Link>
           </div>
-          <div className="h-6 w-px bg-border-light dark:bg-[#233348]"></div>
+          <div className="h-6 w-px bg-border-light dark:bg-input-border"></div>
           <div className="flex items-center gap-3">
             <div className="text-right hidden lg:block">
               <p className="text-xs font-semibold">Dr. Sarah Jenning</p>
@@ -48,7 +48,7 @@ const ImageUploadNavBar = () => {
               </p>
             </div>
             <div
-              className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-border-light dark:border-[#233348]"
+              className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-border-light dark:border-input-border"
               data-alt="Profile picture of a female doctor"
               style={{
                 backgroundImage:

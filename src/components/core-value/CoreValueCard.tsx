@@ -1,4 +1,4 @@
-import { CoreValueCardProps } from '@/utils/types'
+import { CoreValueCardProps } from "@/types/props"
 
 const CoreValueCard = ({ icon, title, description }: CoreValueCardProps) => {
   return (

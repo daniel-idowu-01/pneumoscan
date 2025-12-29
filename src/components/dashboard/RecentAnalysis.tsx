@@ -32,7 +32,7 @@ const RecentAnalyses = () => {
               </tr>
             </thead>
             <tbody className="text-sm divide-y divide-border-dark">
-              <tr className="group hover:bg-[#233348] transition-colors">
+              <tr className="group hover:bg-input-border transition-colors">
                 <td className="py-4 px-6 font-medium text-white">#PT-8942</td>
                 <td className="py-4 px-6 text-gray-300">Chest X-Ray (PA)</td>
                 <td className="py-4 px-6 text-gray-400">Oct 24, 10:42 AM</td>
@@ -51,7 +51,7 @@ const RecentAnalyses = () => {
                   </button>
                 </td>
               </tr>
-              <tr className="group hover:bg-[#233348] transition-colors">
+              <tr className="group hover:bg-input-border transition-colors">
                 <td className="py-4 px-6 font-medium text-white">#PT-8941</td>
                 <td className="py-4 px-6 text-gray-300">Chest X-Ray (Lat)</td>
                 <td className="py-4 px-6 text-gray-400">Oct 24, 09:15 AM</td>
@@ -74,7 +74,7 @@ const RecentAnalyses = () => {
                   </button>
                 </td>
               </tr>
-              <tr className="group hover:bg-[#233348] transition-colors">
+              <tr className="group hover:bg-input-border transition-colors">
                 <td className="py-4 px-6 font-medium text-white">#PT-8938</td>
                 <td className="py-4 px-6 text-gray-300">Chest CT Scan</td>
                 <td className="py-4 px-6 text-gray-400">Oct 23, 04:30 PM</td>
@@ -97,7 +97,7 @@ const RecentAnalyses = () => {
                   </button>
                 </td>
               </tr>
-              <tr className="group hover:bg-[#233348] transition-colors">
+              <tr className="group hover:bg-input-border transition-colors">
                 <td className="py-4 px-6 font-medium text-white">#PT-8935</td>
                 <td className="py-4 px-6 text-gray-300">Chest X-Ray (PA)</td>
                 <td className="py-4 px-6 text-gray-400">Oct 23, 02:12 PM</td>

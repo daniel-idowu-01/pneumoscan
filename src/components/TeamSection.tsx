@@ -1,4 +1,4 @@
-import { TeamSectionProps } from '@/utils/types'
+import { TeamSectionProps } from "@/types/props"
 
 const TeamSection = ({ title, subtitle, members }: TeamSectionProps) => {
   return (

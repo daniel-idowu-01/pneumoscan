@@ -1,4 +1,4 @@
-import { HeroSectionProps } from '@/utils/types'
+import { HeroSectionProps } from "@/types/props"
 
 const HeroSection = ({ title, subtitle, imageUrl }: HeroSectionProps) => {
   return (

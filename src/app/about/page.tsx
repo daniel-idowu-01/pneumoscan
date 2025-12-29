@@ -33,7 +33,7 @@ const About = () => {
 
           <TestimonialsSection testimonials={testimonials} />
 
-          <div className="w-full flex justify-center py-20 px-4 md:px-10 lg:px-40 bg-gradient-to-b from-surface-dark to-background-dark border-t border-border-dark">
+          <div className="w-full flex justify-center py-20 px-4 md:px-10 lg:px-40 bg-linear-to-b from-surface-dark to-background-dark border-t border-border-dark">
             <div className="layout-content-container flex flex-col items-center max-w-[600px] flex-1 text-center gap-6">
               <h2 className="text-white text-3xl md:text-4xl font-black tracking-tight">
                 Ready to modernize your diagnostics?

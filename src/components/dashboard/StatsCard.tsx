@@ -1,4 +1,4 @@
-import { DashboardStatsCardProps } from '@/utils/types'
+import { DashboardStatsCardProps } from "@/types/props"
 
 const StatCard = ({
   title,
