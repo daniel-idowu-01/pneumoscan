@@ -1,6 +1,6 @@
 const SettingsSideBar = () => {
   return (
-    <aside className="hidden lg:flex flex-col w-72 flex-shrink-0">
+    <aside className="hidden lg:flex flex-col w-72 shrink-0">
       <div className="flex flex-col gap-6 sticky top-24">
         <div className="flex flex-col px-2">
           <h1 className="text-white text-xl font-bold leading-normal">Settings</h1>

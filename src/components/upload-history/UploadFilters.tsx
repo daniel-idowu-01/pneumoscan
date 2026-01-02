@@ -2,7 +2,7 @@ const UploadFilters = () => {
   return (
     <div className="bg-surface-dark rounded-xl p-5 border border-border-dark flex flex-col gap-5">
       <div className="flex flex-col md:flex-row gap-4 items-end">
-        <label className="flex flex-col w-full md:flex-[2]">
+        <label className="flex flex-col w-full md:flex-2">
           <span className="text-white text-sm font-medium pb-2">Search Patient ID</span>
           <div className="relative">
             <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary">
