@@ -1,27 +1,36 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUploadScan } from '@/hooks/useUploadScan'
+import { usePatientSearch } from '@/hooks/usePatientSearch'
 import ImageUploadNavBar from '@/components/headers/ImageUploadNavBar'
+import { generatePatientId } from '@/lib/utils/scan-utils'
 
 export default function ImageUploadPage() {
   const router = useRouter()
   const { uploadScan, isUploading, error } = useUploadScan()
+  const { searchQuery, setSearchQuery, results, isSearching, clearSearch } = usePatientSearch()
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // Form state
   const [patientId, setPatientId] = useState('')
+  const [isGeneratingId, setIsGeneratingId] = useState(false)
   const [patientName, setPatientName] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [clinicalNotes, setClinicalNotes] = useState('')
   const [symptoms, setSymptoms] = useState<string[]>([])
   const [customSymptom, setCustomSymptom] = useState('')
 
+  // Image state
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [imageFileName, setImageFileName] = useState('')
   const [imageMimeType, setImageMimeType] = useState('')
 
+  // UI state
   const [showSuccess, setShowSuccess] = useState(false)
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false)
+  const [isNewPatient, setIsNewPatient] = useState(true)
 
   const commonSymptoms = [
     'Cough',
@@ -32,6 +41,68 @@ export default function ImageUploadPage() {
     'Difficulty breathing',
     'Rapid breathing',
   ]
+
+  // Auto-generate patient ID on mount for new patients
+  useEffect(() => {
+    if (isNewPatient) {
+      generatePatientIdAPI()
+    }
+  }, [isNewPatient])
+
+  // Show/hide search dropdown based on results
+  useEffect(() => {
+    setShowSearchDropdown(results.length > 0 && searchQuery.length >= 2)
+  }, [results, searchQuery])
+
+  const generatePatientIdAPI = async () => {
+    setIsGeneratingId(true)
+    try {
+      const response = await fetch('/api/patients/generate-id')
+      const data = await response.json()
+
+      if (response.ok && data.patientId) {
+        setPatientId(data.patientId)
+      } else {
+        console.error('Failed to generate patient ID:', data.error)
+        const patientId = generatePatientId()
+        setPatientId(patientId)
+      }
+    } catch (err) {
+      console.error('Error generating patient ID:', err)
+      const patientId =  generatePatientId()
+      setPatientId(patientId)
+    } finally {
+      setIsGeneratingId(false)
+    }
+  }
+
+  const handlePatientModeToggle = (newPatient: boolean) => {
+    setIsNewPatient(newPatient)
+    if (newPatient) {
+      setPatientId('')
+      setPatientName('')
+      setDateOfBirth('')
+      setClinicalNotes('')
+      setSearchQuery('')
+      clearSearch()
+      generatePatientId()
+    } else {
+      setPatientId('')
+      setPatientName('')
+      setDateOfBirth('')
+      setClinicalNotes('')
+    }
+  }
+
+  const handleSelectPatient = (patient: any) => {
+    setPatientId(patient.patientId)
+    setPatientName(patient.fullName)
+    setDateOfBirth(patient.dateOfBirth ? patient.dateOfBirth.split('T')[0] : '')
+    setClinicalNotes(patient.clinicalNotes || '')
+    setSearchQuery('')
+    setShowSearchDropdown(false)
+    clearSearch()
+  }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -78,11 +149,6 @@ export default function ImageUploadPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!patientId.trim()) {
-      alert('Please enter a Patient ID')
-      return
-    }
-
     if (!patientName.trim()) {
       alert('Please enter patient name')
       return
@@ -93,7 +159,6 @@ export default function ImageUploadPage() {
       return
     }
 
-    // Upload scan
     const success = await uploadScan({
       patientId: patientId.trim(),
       patientName: patientName.trim(),
@@ -114,7 +179,6 @@ export default function ImageUploadPage() {
   }
 
   const handleReset = () => {
-    setPatientId('')
     setPatientName('')
     setDateOfBirth('')
     setClinicalNotes('')
@@ -122,6 +186,13 @@ export default function ImageUploadPage() {
     setSelectedImage(null)
     setImageFileName('')
     setImageMimeType('')
+    setSearchQuery('')
+    clearSearch()
+    if (isNewPatient) {
+      generatePatientId()
+    } else {
+      setPatientId('')
+    }
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
@@ -132,6 +203,7 @@ export default function ImageUploadPage() {
       <ImageUploadNavBar />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
             New Chest X-Ray Scan
@@ -141,6 +213,7 @@ export default function ImageUploadPage() {
           </p>
         </div>
 
+        {/* Success Message */}
         {showSuccess && (
           <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <div className="flex items-center gap-3">
@@ -159,6 +232,7 @@ export default function ImageUploadPage() {
           </div>
         )}
 
+        {/* Error Message */}
         {error && (
           <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <div className="flex items-center gap-3">
@@ -171,6 +245,113 @@ export default function ImageUploadPage() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Patient Mode Toggle */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+              Patient Selection
+            </h2>
+
+            <div className="flex gap-2 mb-4">
+              <button
+                type="button"
+                onClick={() => handlePatientModeToggle(true)}
+                className={`flex-1 px-4 py-3 rounded-lg font-medium transition-all ${
+                  isNewPatient
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                }`}
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined text-[20px]">person_add</span>
+                  New Patient
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handlePatientModeToggle(false)}
+                className={`flex-1 px-4 py-3 rounded-lg font-medium transition-all ${
+                  !isNewPatient
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                }`}
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined text-[20px]">search</span>
+                  Existing Patient
+                </span>
+              </button>
+            </div>
+
+            {/* Existing Patient Search */}
+            {!isNewPatient && (
+              <div className="relative">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search by patient ID or name..."
+                    className="w-full px-4 py-3 pl-12 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    search
+                  </span>
+                  {isSearching && (
+                    <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-blue-600 animate-spin">
+                      progress_activity
+                    </span>
+                  )}
+                </div>
+
+                {/* Search Results Dropdown */}
+                {showSearchDropdown && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-10"
+                      onClick={() => setShowSearchDropdown(false)}
+                    />
+                    <div className="absolute z-20 w-full mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg max-h-64 overflow-y-auto">
+                      {results.map((patient) => (
+                        <button
+                          key={patient.id}
+                          type="button"
+                          onClick={() => handleSelectPatient(patient)}
+                          className="w-full px-4 py-3 text-left hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors border-b border-slate-100 dark:border-slate-700 last:border-b-0"
+                        >
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1">
+                              <p className="font-semibold text-slate-900 dark:text-white">
+                                {patient.fullName}
+                              </p>
+                              <p className="text-sm text-slate-600 dark:text-slate-400">
+                                ID: {patient.patientId}
+                              </p>
+                              {patient.dateOfBirth && (
+                                <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+                                  DOB: {new Date(patient.dateOfBirth).toLocaleDateString()}
+                                </p>
+                              )}
+                            </div>
+                            <span className="material-symbols-outlined text-slate-400 dark:text-slate-500">
+                              arrow_forward
+                            </span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {searchQuery.length >= 2 && results.length === 0 && !isSearching && (
+                  <div className="mt-2 p-4 text-center text-slate-600 dark:text-slate-400 text-sm">
+                    No patients found. Try a different search term.
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
           {/* Image Upload Section */}
           <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
@@ -253,19 +434,56 @@ export default function ImageUploadPage() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Patient ID <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={patientId}
-                  onChange={(e) => setPatientId(e.target.value)}
-                  placeholder="e.g., PID-12345"
-                  className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  required
-                />
-              </div>
+              {isNewPatient ? (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    Patient ID (Auto-generated)
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={patientId}
+                      onChange={(e) => setPatientId(e.target.value)}
+                      placeholder="Generating..."
+                      className="flex-1 px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      disabled={isGeneratingId}
+                    />
+                    <button
+                      type="button"
+                      onClick={generatePatientId}
+                      disabled={isGeneratingId}
+                      className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                      title="Generate new Patient ID"
+                    >
+                      {isGeneratingId ? (
+                        <span className="material-symbols-outlined animate-spin text-[20px]">
+                          progress_activity
+                        </span>
+                      ) : (
+                        <span className="material-symbols-outlined text-[20px]">
+                          refresh
+                        </span>
+                      )}
+                    </button>
+                  </div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Unique identifier for this patient
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    Patient ID
+                  </label>
+                  <input
+                    type="text"
+                    value={patientId}
+                    readOnly
+                    placeholder="Select a patient above"
+                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                  />
+                </div>
+              )}
 
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -399,7 +617,7 @@ export default function ImageUploadPage() {
 
             <button
               type="submit"
-              disabled={isUploading || !selectedImage || !patientId || !patientName}
+              disabled={isUploading || !selectedImage || !patientName || (!isNewPatient && !patientId)}
               className="px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             >
               {isUploading ? (

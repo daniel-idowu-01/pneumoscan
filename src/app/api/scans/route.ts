@@ -198,8 +198,8 @@ async function getAllScans(request: AuthenticatedRequest) {
 
 export async function GET(request: NextRequest) {
     return authMiddleware(request as AuthenticatedRequest, getAllScans)
-  }
+}
   
-  export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest) {
     return authMiddleware(request as AuthenticatedRequest, createScan)
-  }
+}
