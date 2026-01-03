@@ -1,5 +1,5 @@
 import FeatureCard from './FeatureCard'
-import { FEATURES } from '@/utils/data'
+import { FEATURES } from '@/lib/utils/data'
 import SectionHeader from './SectionHeader'
 
 const FeaturesSection = () => {

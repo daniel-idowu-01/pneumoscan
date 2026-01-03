@@ -5,7 +5,7 @@ import NavBar from '@/components/headers/NavBar'
 import HeroSection from '@/components/about/HeroSection'
 import TeamSection from '@/components/TeamSection'
 import TestimonialsSection from '@/components/testimonials/TestimonialsSection'
-import { teamMembers, testimonials } from '@/utils/data'
+import { teamMembers, testimonials } from '@/lib/utils/data'
 import Link from 'next/link'
 
 const About = () => {

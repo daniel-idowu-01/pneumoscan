@@ -81,7 +81,7 @@ const ContactSidebar = () => {
         </div>
       </div>
       <div className="relative w-full h-32 rounded-xl overflow-hidden bg-surface-dark border border-slate-200 dark:border-border-dark group">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-blue-600/80 z-10"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-primary/80 to-blue-600/80 z-10"></div>
         <img
           className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50"
           data-alt="Abstract medical technology background with blue overlay"

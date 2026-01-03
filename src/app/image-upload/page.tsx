@@ -1,209 +1,424 @@
 'use client'
-import ImageUploadHeader from '@/components/headers/ImageUploadNavBar'
 
-const ImageUpload = () => {
-  const handleUpload = () => {
-    // document.getElementById('file-upload').click()
-    return
+import { useState, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+import { useUploadScan } from '@/hooks/useUploadScan'
+import ImageUploadNavBar from '@/components/headers/ImageUploadNavBar'
+
+export default function ImageUploadPage() {
+  const router = useRouter()
+  const { uploadScan, isUploading, error } = useUploadScan()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const [patientId, setPatientId] = useState('')
+  const [patientName, setPatientName] = useState('')
+  const [dateOfBirth, setDateOfBirth] = useState('')
+  const [clinicalNotes, setClinicalNotes] = useState('')
+  const [symptoms, setSymptoms] = useState<string[]>([])
+  const [customSymptom, setCustomSymptom] = useState('')
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [imageFileName, setImageFileName] = useState('')
+  const [imageMimeType, setImageMimeType] = useState('')
+
+  const [showSuccess, setShowSuccess] = useState(false)
+
+  const commonSymptoms = [
+    'Cough',
+    'Fever',
+    'Shortness of breath',
+    'Chest pain',
+    'Fatigue',
+    'Difficulty breathing',
+    'Rapid breathing',
+  ]
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
+      alert('Please select a JPEG or PNG image')
+      return
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert('Image size must be less than 10MB')
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setSelectedImage(reader.result as string)
+      setImageFileName(file.name)
+      setImageMimeType(file.type)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const handleSymptomToggle = (symptom: string) => {
+    setSymptoms((prev) =>
+      prev.includes(symptom)
+        ? prev.filter((s) => s !== symptom)
+        : [...prev, symptom]
+    )
+  }
+
+  const handleAddCustomSymptom = () => {
+    if (customSymptom.trim() && !symptoms.includes(customSymptom.trim())) {
+      setSymptoms((prev) => [...prev, customSymptom.trim()])
+      setCustomSymptom('')
+    }
+  }
+
+  const handleRemoveSymptom = (symptom: string) => {
+    setSymptoms((prev) => prev.filter((s) => s !== symptom))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!patientId.trim()) {
+      alert('Please enter a Patient ID')
+      return
+    }
+
+    if (!patientName.trim()) {
+      alert('Please enter patient name')
+      return
+    }
+
+    if (!selectedImage) {
+      alert('Please select a chest X-ray image')
+      return
+    }
+
+    // Upload scan
+    const success = await uploadScan({
+      patientId: patientId.trim(),
+      patientName: patientName.trim(),
+      dateOfBirth: dateOfBirth || undefined,
+      clinicalNotes: clinicalNotes.trim() || undefined,
+      symptoms: symptoms.length > 0 ? symptoms : undefined,
+      imageData: selectedImage,
+      imageFileName,
+      imageMimeType,
+    })
+
+    if (success) {
+      setShowSuccess(true)
+      setTimeout(() => {
+        router.push('/upload-history')
+      }, 2000)
+    }
+  }
+
+  const handleReset = () => {
+    setPatientId('')
+    setPatientName('')
+    setDateOfBirth('')
+    setClinicalNotes('')
+    setSymptoms([])
+    setSelectedImage(null)
+    setImageFileName('')
+    setImageMimeType('')
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
   }
 
   return (
-    <section className="flex flex-col overflow-x-hidden transition-colors duration-200">
-      <ImageUploadHeader />
-      <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 flex justify-center">
-        <div className="w-full max-w-7xl flex flex-col gap-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-border-light dark:border-border-dark pb-6">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight mb-2">New X-Ray Analysis</h1>
-              <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-2xl">
-                Upload a chest X-ray image (DICOM or PNG) and provide patient details for
-                AI-assisted diagnostic processing.
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">
-                <span className="material-symbols-outlined text-lg">help</span>
-                <span>Help Guide</span>
-              </button>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+      <ImageUploadNavBar />
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+            New Chest X-Ray Scan
+          </h1>
+          <p className="text-slate-600 dark:text-slate-400">
+            Upload a chest X-ray image and register patient information for AI analysis
+          </p>
+        </div>
+
+        {showSuccess && (
+          <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-green-600 dark:text-green-400">
+                check_circle
+              </span>
+              <div>
+                <p className="font-semibold text-green-900 dark:text-green-100">
+                  Scan uploaded successfully!
+                </p>
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  Redirecting to scan history...
+                </p>
+              </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
-            <div className="lg:col-span-7 flex flex-col gap-6">
-              <div className="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden flex flex-col flex-1 min-h-[500px]">
-                <div className="p-5 border-b border-border-light dark:border-border-dark flex justify-between items-center">
-                  <h3 className="font-bold text-lg flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary">upload_file</span>
-                    Scan Upload
-                  </h3>
-                  <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary dark:bg-primary/20">
-                    DICOM / PNG / JPEG
-                  </span>
-                </div>
-                <div className="flex-1 p-6 flex flex-col">
-                  <label
-                    className="group relative flex flex-col items-center justify-center w-full h-full min-h-[400px] rounded-lg border-2 border-dashed border-border-light dark:border-[#324867] hover:border-primary dark:hover:border-primary hover:bg-primary/5 transition-all cursor-pointer"
-                    htmlFor="file-upload"
-                  >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
-                      <div className="mb-4 p-4 rounded-full bg-background-light dark:bg-[#111822] group-hover:scale-110 transition-transform duration-300">
-                        <span className="material-symbols-outlined text-4xl text-text-secondary-light dark:text-[#92a9c9] group-hover:text-primary transition-colors">
-                          cloud_upload
-                        </span>
-                      </div>
-                      <p className="mb-2 text-lg font-semibold text-text-light dark:text-white">
-                        Click to upload or drag and drop
+        )}
+
+        {error && (
+          <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-red-600 dark:text-red-400">
+                error
+              </span>
+              <p className="text-red-900 dark:text-red-100">{error}</p>
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Image Upload Section */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+              Chest X-Ray Image
+            </h2>
+
+            <div className="space-y-4">
+              {!selectedImage ? (
+                <div className="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-8 text-center">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-full">
+                      <span className="material-symbols-outlined text-4xl text-blue-600 dark:text-blue-400">
+                        cloud_upload
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-lg font-medium text-slate-900 dark:text-white mb-1">
+                        Upload Chest X-Ray
                       </p>
-                      <p className="mb-4 text-sm text-text-secondary-light dark:text-[#92a9c9] max-w-sm mx-auto">
-                        Supported formats: DICOM, PNG, JPEG. High resolution recommended for best
-                        results.
-                      </p>
-                      <p className="text-xs text-text-secondary-light dark:text-[#586a84]">
-                        Maximum file size: 50MB
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        JPEG or PNG format, max 10MB
                       </p>
                     </div>
-                    <input
-                      accept=".png, .jpg, .jpeg, .dcm"
-                      className="hidden"
-                      id="file-upload"
-                      type="file"
+                    <label className="cursor-pointer">
+                      <span className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors inline-block">
+                        Select Image
+                      </span>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/jpeg,image/jpg,image/png"
+                        onChange={handleImageChange}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+                    <img
+                      src={selectedImage}
+                      alt="Chest X-Ray Preview"
+                      className="w-full h-auto max-h-96 object-contain bg-slate-100 dark:bg-slate-900"
                     />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="material-symbols-outlined text-green-600 dark:text-green-400">
+                        check_circle
+                      </span>
+                      <span className="text-slate-700 dark:text-slate-300">
+                        {imageFileName}
+                      </span>
+                    </div>
                     <button
-                      className="mt-4 px-6 py-2.5 rounded-lg bg-primary hover:bg-blue-600 text-white font-medium text-sm transition-colors shadow-lg shadow-primary/20"
-                      onClick={handleUpload}
                       type="button"
+                      onClick={() => {
+                        setSelectedImage(null)
+                        setImageFileName('')
+                        setImageMimeType('')
+                        if (fileInputRef.current) {
+                          fileInputRef.current.value = ''
+                        }
+                      }}
+                      className="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-medium"
                     >
-                      Browse Files
+                      Remove
                     </button>
-                  </label>
+                  </div>
                 </div>
+              )}
+            </div>
+          </div>
+
+          {/* Patient Information Section */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+              Patient Information
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  Patient ID <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={patientId}
+                  onChange={(e) => setPatientId(e.target.value)}
+                  placeholder="e.g., PID-12345"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
               </div>
-              <div className="flex items-start gap-3 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50">
-                <span className="material-symbols-outlined text-primary mt-0.5">privacy_tip</span>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={patientName}
+                  onChange={(e) => setPatientName(e.target.value)}
+                  placeholder="e.g., John Doe"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  value={dateOfBirth}
+                  onChange={(e) => setDateOfBirth(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Symptoms Section */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+              Symptoms
+            </h2>
+
+            <div className="space-y-4">
+              <div className="flex flex-wrap gap-2">
+                {commonSymptoms.map((symptom) => (
+                  <button
+                    key={symptom}
+                    type="button"
+                    onClick={() => handleSymptomToggle(symptom)}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      symptoms.includes(symptom)
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                    }`}
+                  >
+                    {symptom}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={customSymptom}
+                  onChange={(e) => setCustomSymptom(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      handleAddCustomSymptom()
+                    }
+                  }}
+                  placeholder="Add custom symptom..."
+                  className="flex-1 px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddCustomSymptom}
+                  className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+                >
+                  Add
+                </button>
+              </div>
+
+              {symptoms.length > 0 && (
                 <div>
-                  <h4 className="text-sm font-semibold text-primary mb-1">
-                    HIPAA Compliance Notice
-                  </h4>
-                  <p className="text-xs text-text-secondary-light dark:text-blue-200/70">
-                    All uploaded images are processed securely. Patient identifiers in DICOM
-                    metadata will be automatically anonymized before AI processing unless specified
-                    otherwise.
+                  <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    Selected Symptoms:
                   </p>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-5 flex flex-col h-full">
-              <div className="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm flex flex-col h-full">
-                <div className="p-5 border-b border-border-light dark:border-border-dark">
-                  <h3 className="font-bold text-lg flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary">person_add</span>
-                    Patient Details
-                  </h3>
-                </div>
-                <div className="p-6 flex-1 flex flex-col gap-6">
-                  <div className="relative">
-                    <label className="block text-sm font-medium mb-2 text-text-secondary-light dark:text-[#92a9c9]">
-                      Link Existing Patient (Optional)
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-text-secondary-light dark:text-[#586a84] text-[20px]">
-                        search
+                  <div className="flex flex-wrap gap-2">
+                    {symptoms.map((symptom) => (
+                      <span
+                        key={symptom}
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-sm"
+                      >
+                        {symptom}
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveSymptom(symptom)}
+                          className="hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded-full p-0.5"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">
+                            close
+                          </span>
+                        </button>
                       </span>
-                      <input
-                        className="w-full pl-10 h-11 bg-background-light dark:bg-[#111822] border border-border-light dark:border-[#324867] rounded-lg text-sm text-text-light dark:text-white placeholder:text-text-secondary-light dark:placeholder:text-[#586a84] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all"
-                        placeholder="Search by name or ID..."
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div className="h-px bg-border-light dark:bg-input-border w-full"></div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="col-span-2">
-                      <label className="block text-sm font-medium mb-1.5 text-text-light dark:text-white">
-                        Full Name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        className="w-full h-11 bg-background-light dark:bg-[#111822] border border-border-light dark:border-[#324867] rounded-lg px-4 text-sm text-text-light dark:text-white placeholder:text-text-secondary-light dark:placeholder:text-[#586a84] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all"
-                        placeholder="Ex: John Doe"
-                        type="text"
-                      />
-                    </div>
-                    <div className="col-span-1">
-                      <label className="block text-sm font-medium mb-1.5 text-text-light dark:text-white">
-                        Patient ID <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        className="w-full h-11 bg-background-light dark:bg-[#111822] border border-border-light dark:border-[#324867] rounded-lg px-4 text-sm text-text-light dark:text-white placeholder:text-text-secondary-light dark:placeholder:text-[#586a84] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all"
-                        placeholder="PT-XXXX"
-                        type="text"
-                      />
-                    </div>
-                    <div className="col-span-1">
-                      <label className="block text-sm font-medium mb-1.5 text-text-light dark:text-white">
-                        Date of Birth
-                      </label>
-                      <input
-                        className="w-full h-11 bg-background-light dark:bg-[#111822] border border-border-light dark:border-[#324867] rounded-lg px-4 text-sm text-text-light dark:text-white placeholder:text-text-secondary-light dark:placeholder:text-[#586a84] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all [color-scheme:light] dark:[color-scheme:dark]"
-                        type="date"
-                      />
-                    </div>
-                    <div className="col-span-2">
-                      <label className="block text-sm font-medium mb-1.5 text-text-light dark:text-white">
-                        Clinical Notes
-                      </label>
-                      <textarea
-                        className="w-full min-h-[120px] bg-background-light dark:bg-[#111822] border border-border-light dark:border-[#324867] rounded-lg p-4 text-sm text-text-light dark:text-white placeholder:text-text-secondary-light dark:placeholder:text-[#586a84] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all resize-none"
-                        placeholder="Enter symptoms, history, or specific areas to focus on..."
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-3 mt-auto pt-4">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input className="peer sr-only" type="checkbox" />
-                      <div className="w-5 h-5 rounded border border-border-light dark:border-[#324867] bg-background-light dark:bg-[#111822] peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center transition-all">
-                        <span className="material-symbols-outlined text-white text-[16px] opacity-0 peer-checked:opacity-100">
-                          check
-                        </span>
-                      </div>
-                      <span className="text-sm text-text-secondary-light dark:text-text-secondary-dark group-hover:text-text-light dark:group-hover:text-white transition-colors">
-                        High Priority Case
-                      </span>
-                    </label>
+                    ))}
                   </div>
                 </div>
-                <div className="p-5 border-t border-border-light dark:border-border-dark bg-background-light/50 dark:bg-[#111822]/50 rounded-b-xl flex gap-3">
-                  <button className="flex-1 h-11 rounded-lg border border-border-light dark:border-[#324867] bg-transparent hover:bg-background-light dark:hover:bg-input-border text-text-light dark:text-white text-sm font-semibold transition-colors">
-                    Cancel
-                  </button>
-                  <button className="flex-[2] h-11 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold shadow-lg shadow-primary/25 transition-all flex items-center justify-center gap-2 group">
-                    <span>Analyze Scan</span>
-                    <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">
-                      arrow_forward
-                    </span>
-                  </button>
-                </div>
-              </div>
+              )}
             </div>
           </div>
-        </div>
+
+          {/* Clinical Notes Section */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+              Clinical Notes
+            </h2>
+
+            <textarea
+              value={clinicalNotes}
+              onChange={(e) => setClinicalNotes(e.target.value)}
+              placeholder="Enter any additional clinical notes or observations..."
+              rows={4}
+              className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={handleReset}
+              disabled={isUploading}
+              className="px-6 py-2.5 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Reset Form
+            </button>
+
+            <button
+              type="submit"
+              disabled={isUploading || !selectedImage || !patientId || !patientName}
+              className="px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {isUploading ? (
+                <>
+                  <span className="material-symbols-outlined animate-spin">
+                    progress_activity
+                  </span>
+                  Uploading...
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined">upload</span>
+                  Upload Scan
+                </>
+              )}
+            </button>
+          </div>
+        </form>
       </main>
-      <footer className="w-full border-t border-border-light dark:border-input-border py-6 mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-secondary-light dark:text-[#586a84]">
-          <p>© 2024 MedScan AI. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a className="hover:text-primary transition-colors" href="#">
-              Privacy Policy
-            </a>
-            <a className="hover:text-primary transition-colors" href="#">
-              Terms of Service
-            </a>
-            <a className="hover:text-primary transition-colors" href="#">
-              Support
-            </a>
-          </div>
-        </div>
-      </footer>
-    </section>
+    </div>
   )
 }
-
-export default ImageUpload

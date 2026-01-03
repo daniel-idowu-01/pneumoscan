@@ -1,5 +1,5 @@
 import React from 'react'
-import { stats } from '@/utils/data'
+import { stats } from '@/lib/utils/data'
 
 const AboutStats = () => {
   return (
