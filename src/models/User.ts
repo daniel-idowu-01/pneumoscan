@@ -8,6 +8,18 @@ export interface User {
   lastName: string
   role: 'admin' | 'radiologist' | 'doctor' | 'staff'
   licenseId?: string
+  
+  hospital?: string
+  department?: string
+  phoneNumber?: string
+  
+  emailNotifications?: boolean
+  highSensitivityMode?: boolean
+  marketingCommunications?: boolean
+  
+  scansThisMonth?: number
+  totalScans?: number
+  
   refreshTokens?: string[]
   createdAt: Date
   updatedAt: Date
@@ -20,6 +32,14 @@ export interface UserResponse {
   lastName: string
   role: string
   licenseId?: string
+  hospital?: string
+  department?: string
+  phoneNumber?: string
+  emailNotifications?: boolean
+  highSensitivityMode?: boolean
+  marketingCommunications?: boolean
+  scansThisMonth?: number
+  totalScans?: number
   createdAt?: string
   updatedAt?: string
 }
@@ -32,6 +52,14 @@ export function userToResponse(user: User): UserResponse {
     lastName: user.lastName,
     role: user.role,
     licenseId: user.licenseId,
+    hospital: user.hospital,
+    department: user.department,
+    phoneNumber: user.phoneNumber,
+    emailNotifications: user.emailNotifications ?? true,
+    highSensitivityMode: user.highSensitivityMode ?? false,
+    marketingCommunications: user.marketingCommunications ?? false,
+    scansThisMonth: user.scansThisMonth ?? 0,
+    totalScans: user.totalScans ?? 0,
     createdAt: user.createdAt?.toISOString(),
     updatedAt: user.updatedAt?.toISOString(),
   }
