@@ -64,17 +64,14 @@ class ModelLoader:
         try:
             logger.info(f"Loading model from: {self.model_path}")
             
-            # Check if model file exists
             if not os.path.exists(self.model_path):
                 raise FileNotFoundError(f"Model file not found: {self.model_path}")
             
-            # Load model based on file extension
             if self.model_path.endswith('.h5'):
                 self._model = keras.models.load_model(self.model_path)
             elif self.model_path.endswith('.keras'):
                 self._model = keras.models.load_model(self.model_path)
             elif os.path.isdir(self.model_path):
-                # TensorFlow SavedModel format
                 self._model = tf.saved_model.load(self.model_path)
             else:
                 raise ValueError(f"Unsupported model format: {self.model_path}")
@@ -82,7 +79,6 @@ class ModelLoader:
             self._is_loaded = True
             self._model_version = self.model_version
             
-            # Warm up the model with a dummy prediction
             self._warm_up_model()
             
             logger.info(f"Model loaded successfully (version: {self._model_version})")

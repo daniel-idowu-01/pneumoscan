@@ -7,7 +7,7 @@ import numpy as np
 import logging
 import time
 from typing import Dict, List, Optional
-from model_loader import ModelLoader
+from app.model_loader import ModelLoader
 
 logger = logging.getLogger(__name__)
 
